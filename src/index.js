@@ -22,7 +22,7 @@ app.get("/", (req,res) => {
 })
 
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log('Server is up and running');
 })
 
