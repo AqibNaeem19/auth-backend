@@ -17,6 +17,10 @@ const userRoute = require('./routes/user');
 
 app.use('/user', userRoute);
 
+app.get("/", (req,res) => {
+  res.send("This is the default route");
+})
+
 
 app.listen(5000, () => {
   console.log('Server is up and running');
