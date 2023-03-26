@@ -58,14 +58,14 @@ exports.login = async (req, res) => {
 
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
-      return res.status(400).json({ error: "User not found!" });
+      return res.status(400).json({ status: "FAILED", message: "User not found!" });
     }
 
     // Checks for password verification
     const hashedPassword = existingUser.password
     const isPassMatch = await verifyHashedData(password, hashedPassword);
     if (!isPassMatch) {
-      return res.status(400).json({ error: "Password didn't match" });
+      return res.status(400).json({ status: "FAILED", message: "Password didn't match" });
     }
 
     // Create user token info for generating jwt token
@@ -78,13 +78,13 @@ exports.login = async (req, res) => {
     const userToken = await createToken(tokenData);
 
     if (!userToken) {
-      return res.status(400).json({ error: "Authentication didn't worked" });
+      return res.status(400).json({ status: "FAILED", message: "Couldn't generate a new token for user" });
     }
 
     //Updating the token for particular user record
     existingUser.token = userToken;
 
-    res.status(200).json({ message: "User login successfull", user: existingUser });
+    res.status(200).json({ status: "SUCCESS", message: "User login successfull", user: existingUser });
 
 
 
