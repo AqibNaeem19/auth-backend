@@ -16,7 +16,17 @@ const userSchema = new mongoose.Schema({
   },
   token: {
     type: String,
-  }
+  },
+  dateOfBirth: {
+    type: Date,
+    default: Date.now
+  },
+  resetPasswordCode: {
+    type: String,
+  },
+  resetPasswordCodeExpiresAt: {
+    type: Date,
+  },
 })
 
 const User = mongoose.model('Users', userSchema);

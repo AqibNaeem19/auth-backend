@@ -4,7 +4,7 @@ const { TOKEN_KEY, TOKEN_EXPIRY } = process.env;
 // Helper to generate new token
 const createToken = async (
   tokenData,
-  tokenKey = TOKEN_KEY,
+  tokenKey = 'i am the secret to generate tokens',
   tokenExpiry = TOKEN_EXPIRY
 ) => {
   try {

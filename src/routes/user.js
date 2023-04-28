@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const userController = require('../controllers/user');
-const auth = require('../Middleware/auth');
+const verifyToken = require('../Middleware/auth');
 
 // User Signup route
 router.post('/signup', userController.signup);
@@ -10,8 +10,11 @@ router.post('/signup', userController.signup);
 // User login route
 router.post('/login', userController.login);
 
-// User homepage route
-router.post('/homepage', auth, userController.homePage);
+// User request for password reset
+router.post('/reset-request', userController.passwordResetRequest );
+
+// Checks the reset request code and updates the password
+router.post('/reset-password', userController.resetPassword);
 
 
 module.exports = router;
