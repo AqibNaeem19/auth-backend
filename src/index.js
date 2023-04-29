@@ -23,7 +23,7 @@ app.get("/", (req,res) => {
 app.use('/user', userRoute);
 
 // Start to listen request on port
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log('Server is up and running');
 })
 
